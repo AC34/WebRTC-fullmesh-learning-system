@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/css.css">
+  <script src="js/js.js"></script>
+  <title>WebRTC fullmesh learning system</title>
+  <!-- Google-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156794219-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-156794219-1');
+  </script>
+
+
+</head>
+
+<body>
+  <article id="wrapper">
+    <header>
+      <div id="title">
+        <h1>WebRTC fullmesh learning system</h1>
+      </div>
+      <nav id="g-navi">
+        <ul class="flex">
+          <li>
+            <p><a href="https://github.com/AC34/webrtc-fullmesh-learning-system">リポジトリ</a></p>
+          </li>
+          <li>
+            <p><a href="">AC34</a></p>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    </div>
+    <article id="warning">
+      <h2>警告</h2>
+      <p>
+        このシステムは学習目的で制作されたものであり、ローカル環境のみを想定しています。インターネット上の製品としての使用は安全ではありません。製品としての使用はしないで下さい。
+      </p>
+    </article>
+    <article>
+      <h2>このシステムについて</h2>
+      <p>
+        WebRTC APIは、複数のエンドポイントのリアルタイム通信を行うにあたり有用です。
+        しかし、ブラウザ側でのWebRTC APIは複数のイベント処理に対処する必要があり、とりわけ複数のエンドポイント間の接続においては理解や実装が難しくなります。このシステムは、これらのイベント処理をログによって可視化することで、理解を補助することを目的としています。
+      </p>
+    </article>
+    <article>
+      <h2>準備</h2>
+      <p>このリポジトリをクローンしたディレクトリをターミナル(もしくはコマンドプロンプト)で開いているとします。</p>
+      <ol>
+        <li>
+          <p>
+            <a href="https://docs.docker.com/" target="_blank">docker</a>をインストールします
+          </p>
+          <p>
+            (Windowsを使用している場合は、リポジトリのあるドライブがdockerによって共有されていることを確認してください。 <a href="https://docs.docker.com/docker-for-windows/#shared-drives" target="_blank">無効にされている場合は有効にしてください。</a>)</p>
+        </li>
+        <li>
+          <p>
+            次のコマンドでdockerのイメージを作成します: </p>
+          <p class="code">docker-compose -f docker-compose.run.yml build --no-cache</p>
+          <p>Windowsの場合は次のコードで代替できます:</p>
+          <p class="code">prepare</p>
+        </li>
+      </ol>
+    </article>
+    <article>
+      <h2>動作させる</h2>
+      <p>リポジトリのディレクトリをターミナル(あるいはコマンドプロンプト)で開いているものとします。</p>
+      <ol>
+        <li>
+          <p>次のコードを実行します:</p>
+          <p class="code">docker-compose -f docker-compose.run.yml run</p>
+          <p>Windowsの場合は次のコードで代替できます:</p>
+          <p class="code">run</p>
+        </li>
+        <li>
+          <p>ブラウザ(Chrome)の複数のウィンドウを開いて、それぞれのウィンドウでで次のurlにアクセスします:</p>
+          <p class="url">localhost:8080</p>
+        </li>
+        <li>
+          <p>名前を入力してOKを押します。このプロセスでそれぞれのウィンドウが接続されます。</p>
+          <p class="image"><img src="./img/type_names.png"></p>
+        </li>
+        <li>
+          <p>メッセージが届いているかをメッセージで確認します。</p>
+          <p class="image"><img src="./img/messaging.png"></p>
+        </li>
+        <li>
+          <p>
+            ログとコードを読む準備ができました。</p>
+          <p class="image">
+            <img src="./img/console.png">
+          </p>
+        </li>
+      </ol>
+    </article>
+    <article>
+      <h2>より詳しく調べる</h2>
+      <dl>
+        <dt>
+          <p>WebRTC API</p>
+        </dt>
+        <dd>
+          <p><a href="https://developer.mozilla.org/ja/docs/Web/API/WebRTC_API" target="_blank">MDNによる関連記事</a></p>
+        </dd>
+        <dt>
+          <p>サンプル</p>
+        </dt>
+        <dd>
+          <p>
+            <a href="https://github.com/mdn/samples-server/tree/master/s/webrtc-from-chat" target="_blank">チャットサンプル</a></p>
+        </dd>
+      </dl>
+    </article>
+  </article>
+</body>
+
+</html>

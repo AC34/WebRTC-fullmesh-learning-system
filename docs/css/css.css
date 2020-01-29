@@ -1,0 +1,147 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: #252525;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+h1 {
+  color: #363636;
+}
+h2,
+h3 {
+  color: #3d3d3d;
+}
+ul{
+  list-style-type: none;
+}
+ul li,ol li{
+  margin-left:2em;
+}
+a {
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #5345d1;
+  letter-spacing: 0.07em;
+}
+a:after {
+  display: inline-block;
+  content: "";
+  background: url("../img/link_icon.png") no-repeat;
+  background-position: center;
+  width: 1em;
+  height: 1em;
+  background-origin: border-box;
+  background-position: top;
+  background-size: 1em 1em;
+}
+
+#wrapper {
+  width: 700px;
+  margin: 0 auto;
+  margin-bottom: 40vh;
+}
+.flex {
+  display: flex;
+}
+
+#wrapper header{
+  padding:0px 1em;
+}
+#wrapper header #title{
+  margin-top:20vh;
+  width:70%;
+}
+#wrapper header #title h1{
+  font-size:1.8em;
+  padding-bottom:0.2em;
+}
+#wrapper header #language-menu ul{
+  justify-content: flex-end;
+}
+#wrapper #language-menu ul li{
+  margin-left:0px;
+  padding:0 0.5em;
+}
+#wrapper #language-menu ul li:last-child{
+  padding-right: 0;
+}
+#wrapper header #language-menu a:after{
+  display:none;
+}
+#wrapper #g-navi{
+  width:100%;
+  border-top:0.1px solid #363636;
+  padding-top:0.2em;
+  margin-bottom:20vh;
+}
+#wrapper #g-navi ul li{
+  margin-left:0px;
+  padding:0 0.5em;
+}
+#wrapper #g-navi ul li:first-child{
+  padding-left:0;
+}
+
+#wrapper article{
+  padding:1em;
+  margin-bottom:10vh;
+  font-size:1em;
+}
+#wrapper article h2{
+  border-bottom:0.1px solid #dcdcdc;
+  padding-bottom:0.2em;
+  margin-bottom:0.2em;
+  font-size:1.3em;
+}
+#wrapper article p{
+  margin-top:0.6em;
+  text-indent: 0.6em;
+  line-height:1.6em;
+}
+#wrapper article#warning{
+  border:1px double #f5731d;
+  border-radius:2px;
+}
+#wrapper article#warning h2{
+  border-bottom:0.1px solid #f5731d;
+}
+#wrapper article#warning h2,
+#wrapper article#warning p{
+  font-family:sans-serif;
+}
+#wrapper article p.code{
+  margin-top:none;
+  padding:1em;
+  background-color:rgb(13, 18, 34);
+  color:#dddddd;
+  font-family:monospace;
+}
+#wrapper article p.url{
+  padding:1em;
+  font-family:monospace;
+  color:rgb(13, 18, 34);
+  border:1px solid rgb(13, 18, 34);
+}
+#wrapper article p.image{
+  margin-top:none;
+  width:50%;
+}
+#wrapper article p.image img{
+  display:block;
+  width:100%;
+}
+@media screen and (max-width: 750px) {
+  #wrapper {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 40vh;
+  }
+}
+@media screen and (max-width: 500px){
+  #wrapper article p.image{
+    margin-top:none;
+    width:auto;
+  }
+}
