@@ -10,12 +10,10 @@ var ProcessHandler = function(server) {
  */
 ProcessHandler.prototype.handleMessage = function(ws, msg) {
   var msg_obj = this.MessageHandler.getMsgObject(msg);
-  console.log("message_type:" + msg_obj.type);
-  console.log("message object" + JSON.stringify(msg_obj));
+  console.log("messaging:" + JSON.stringify(msg_obj));
   //send
   var send_type = this.Protocol.send;
   if (msg_obj.type === send_type.tell_self_name.type) {
-    console.log("received name =" + msg_obj.self);
     this.handleUserRegistration(ws, msg_obj);
   }
   //common
@@ -35,7 +33,6 @@ ProcessHandler.prototype.handleUserRegistration = function(ws, msg_obj) {
   var name = msg_obj.self;
   var reply_type = this.Protocol.receive;
   if (!this.hasUserByName(name)) {
-    console.log("does not have user");
     //register
     this.registerNewUser(ws, name);
     var msg = this.util.createMsgObject(
@@ -54,7 +51,6 @@ ProcessHandler.prototype.handleUserRegistration = function(ws, msg_obj) {
     this.util.sendToAllExcept(this.Users, name, notice);
   } else {
     //user already exists
-    console.log("user already exists");
     var msg = this.util.createMsgObject(
       this,
       reply_type.name_register_fail.type
@@ -67,11 +63,9 @@ ProcessHandler.prototype.handleUserRegistration = function(ws, msg_obj) {
  * @param {object} msg object
  */
 ProcessHandler.prototype.handleSdpOffer = function(msg_obj) {
-  console.log("sending sdp to " + msg_obj.to);
   if (this.hasUserByName(msg_obj.to)) {
     this.util.sendMsgByName(this, msg_obj, msg_obj.to);
   } else {
-    console.log("handleSdpOffer:user not found" + msg_obj.to);
   }
 };
 /**
@@ -82,7 +76,6 @@ ProcessHandler.prototype.handleSdpAnswerToOffer = function(msg_obj) {
   if (this.hasUserByName(msg_obj.to)) {
     this.util.sendMsgByName(this, msg_obj, msg_obj.to);
   } else {
-    console.log("handleSdpAnswerToOffer:user not found" + msg_obj.to);
   }
 };
 ProcessHandler.prototype.closeConnection = function(ws) {
@@ -102,17 +95,14 @@ ProcessHandler.prototype.hasUserByName = function(name) {
 };
 ProcessHandler.prototype.registerNewUser = function(ws, name) {
   if (!this.hasUserByName(name)) {
-    console.log("registered new user " + name);
     this.Users.push(new this.User(name, ws));
   }
-  console.log("registerNewUser:after:length=" + this.Users.length);
 };
 ProcessHandler.prototype.removeUser = function(ws) {
   console.log("removing user");
   if (this.Users.length === 0) return;
   for (var user in this.Users) {
     if (this.Users[user].socket === ws) {
-      console.log("user deleted " + this.Users[user].name);
       delete this.Users[user];
       return;
     }
@@ -143,7 +133,6 @@ ProcessHandler.prototype.util = {
   },
   sendToAllExcept(users, exception_user, msg_obj) {
     var targets = users.concat();
-    console.log("users length=" + users.length);
     for (var target in targets) {
       if (targets[target].name !== exception_user) {
         targets[target].socket.send(JSON.stringify(msg_obj));

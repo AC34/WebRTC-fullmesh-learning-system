@@ -311,22 +311,22 @@ const UiManager = {
 
 var ProcessManager = {
   wssh: undefined,
-  rmh:undefined,
-  um:undefined,
-  rtcqh:undefined,
-  rtcmh:RTCMsgHandler,
-  rtcmc:RTCMsgCreator,
-  smc:SendMsgCreator,
-  uim:UiManager,
-  protocol:HandlingProtocol,
-  rtcprotocol:RTCMsgProtocol,
-  getInstance:function(){
+  rmh: undefined,
+  um: undefined,
+  rtcqh: undefined,
+  rtcmh: RTCMsgHandler,
+  rtcmc: RTCMsgCreator,
+  smc: SendMsgCreator,
+  uim: UiManager,
+  protocol: HandlingProtocol,
+  rtcprotocol: RTCMsgProtocol,
+  getInstance: function() {
     return Object.create(ProcessManager);
   },
   init: function() {
     ProcessManager.uim.console.logPlain("dom loaded.");
     ProcessManager.um = UsersManager.getInstance();
-    ProcessManager.rmh= ReceivedMsgHandler.getInstance();
+    ProcessManager.rmh = ReceivedMsgHandler.getInstance();
     ProcessManager.rtcqh = new RTCQueueHandler();
     ProcessManager.wssh = WebSocketSdpHandler.getInstance();
     ProcessManager.wssh.init("ws://localhost:5001");
@@ -336,22 +336,29 @@ var ProcessManager = {
       .addEventListener("click", function() {
         ProcessManager.registerSelf();
       });
+    document
+      .querySelector("#user-name-field")
+      .addEventListener("keyup", function(e) {
+        if ((e.keyCode === 13)) {
+          ProcessManager.registerSelf();
+        }
+      });
   },
   registerSelf: function() {
     var user_name = document.querySelector("#user-name-field").value;
-    if(user_name===""){
-     this.uim.console.logError("user name cannot be empty.");
-     return;
+    if (user_name === "") {
+      this.uim.console.logError("user name cannot be empty.");
+      return;
     }
     var msg = ProcessManager.smc.create_tell_self_name(user_name);
     ProcessManager.wssh.sendMsg(msg);
   },
-  submitRTCMsg:function(id,user_name){
+  submitRTCMsg: function(id, user_name) {
     var pm = ProcessManager;
     var msg = document.getElementById(id).value;
     document.getElementById(id).value = "";
-    pm.uim.insertSelfMessage(user_name,msg);
-    pm.rtcmh.sendMsg(user_name,msg);
+    pm.uim.insertSelfMessage(user_name, msg);
+    pm.rtcmh.sendMsg(user_name, msg);
   }
 };
 window.onload = function() {

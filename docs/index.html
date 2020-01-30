@@ -48,20 +48,35 @@
       </p>
     </article>
     <article>
+      <h2>Running Enviroment</h2>
+      <p>This system requires Docker,Web browser and an internet connected enviroment(for preparation)as running enviroment.</p>
+      <p>The tools for development are as follows:</p>
+      <dl class="environment">
+        <dt><p>OS</p></dt>
+        <dd><p>Windows 10</p></dd>
+        <dt><p>Docker</p></dt>
+        <dd><p>19.03.5</p></dd>
+        <dt><p>docker-compose</p></dt>
+        <dd><p>1.24.1</p></dd>
+      </dl>
+      <p>However, running on Debian 10, Chromium, Node.js v10 stack is also checked. </p>
+      <p>Running issues may be related to the older vereions of OS,Web brwoser, Docker.Try updating them when things dont work.</p>
+    </article>
+    <article>
       <h2>Preparation</h2>
       <p>Assuming you are at cloned repository directory from your terminal(or Command Prompt).</p>
       <ol>
         <li>
           <p>
-            Install <a href="https://docs.docker.com/" target="_blank">docker</a>
+            Install <a href="https://docs.Docker.com/" target="_blank">Docker</a>
           </p>
           <p>
-            (If you are using Windows, make sure repository directory is shared with docker. <a href="https://docs.docker.com/docker-for-windows/#shared-drives" target="_blank">Make sharing available when disabled</a>)</p>
+            (If you are using Windows, make sure repository directory is shared with Docker. <a href="https://docs.Docker.com/Docker-for-windows/#shared-drives" target="_blank">Make sharing available when disabled</a>)</p>
         </li>
         <li>
           <p>
-            build docker image. by running:</p>
-          <p class="code">docker-compose -f docker-compose.run.yml build --no-cache</p>
+            build Docker image. by running:</p>
+          <p class="code">Docker-compose -f Docker-compose.run.yml build --no-cache</p>
           <p>For Windows user, alternative command is:</p>
           <p class="code">prepare</p>
         </li>
@@ -73,7 +88,7 @@
       <ol>
         <li>
           <p>run:</p>
-          <p class="code">docker-compose -f docker-compose.run.yml run</p>
+          <p class="code">Docker-compose -f Docker-compose.run.yml run</p>
           <p>For Windows user, alternative command is:</p>
           <p class="code">run</p>
         </li>

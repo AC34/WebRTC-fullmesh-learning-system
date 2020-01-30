@@ -132,6 +132,23 @@ a:after {
   display:block;
   width:100%;
 }
+#wrapper article dl.environment {
+  padding-left:1em;
+}
+
+#wrapper article dl.environment dt,
+#wrapper article dl.environment dd{
+  display: inline-block;
+}
+#wrapper article dl.environment dt p{
+  display: inline-block;
+}
+#wrapper article dl.environment dt p:after{
+  content:":";
+}
+#wrapper article dl.environment dd p{
+  display: inline-block;
+}
 @media screen and (max-width: 750px) {
   #wrapper {
     width: 100%;
