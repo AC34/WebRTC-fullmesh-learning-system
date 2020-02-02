@@ -1,48 +1,4 @@
 
-//send/receive as in browser-wise
-const HandlingProtocol ={
-  common:{
-    sdp_offer:{
-      type:"sdp_offer",
-      self:"",
-      to:"",
-      session_description:""
-    },
-    sdp_answer_to_offer:{
-      type:"sdp_answer_to_offer",
-      self:"",
-      to:"",
-      session_description:""
-    }
-  },
-  send:{
-    tell_self_name:{
-      type:"tell_self_name",
-      self:""
-    }
-  },
-  receive:{
-    unknown:{
-      type:"unknown"
-    },
-    name_register_success:{
-      type:"name_register_success",
-      registered_name:""
-    },
-    name_register_fail:{
-      type:"name_register_fail",
-      failed_name:""
-    },
-    new_user_notice:{
-      type:"new_user_notice",
-      name:""
-    },
-    user_logout_notice:{
-      type:"user_logout_notice",
-      name:""
-    }
-  }
-}
 const ReceivedMsgHandler = {
   /**
    * received message from ws signalling server.
@@ -51,6 +7,9 @@ const ReceivedMsgHandler = {
   getInstance:function(){
     return Object.assign(ReceivedMsgHandler);
   },
+  /**
+   * @param {string} stringified WsMsgProtocol message 
+   */
   handleMsg:async function(msg_string){
     var msg_obj = JSON.parse(msg_string);
     var msg_type = msg_obj.type;
@@ -118,11 +77,60 @@ const SendMsgCreator = {
   },
 }
 
+const WsMsgProtocol ={
+  common:{
+    sdp_offer:{
+      type:"sdp_offer",
+      self:"",
+      to:"",
+      session_description:""
+    },
+    sdp_answer_to_offer:{
+      type:"sdp_answer_to_offer",
+      self:"",
+      to:"",
+      session_description:""
+    }
+  },
+  send:{
+    tell_self_name:{
+      type:"tell_self_name",
+      self:""
+    }
+  },
+  receive:{
+    unknown:{
+      type:"unknown"
+    },
+    name_register_success:{
+      type:"name_register_success",
+      registered_name:""
+    },
+    name_register_fail:{
+      type:"name_register_fail",
+      failed_name:""
+    },
+    new_user_notice:{
+      type:"new_user_notice",
+      name:""
+    },
+    user_logout_notice:{
+      type:"user_logout_notice",
+      name:""
+    }
+  }
+}
 const WebSocketSdpHandler = {
   socket:undefined,
+  /**
+   * @return {WebSocketSdpHandler} copy
+   */
   getInstance:function(){
     return Object.create(WebSocketSdpHandler);
   },
+  /**
+   * @param {string} uri 
+   */
   init:function(uri){
     this.socket = new WebSocket(uri);
     this.socket.addEventListener("open",function(){
@@ -135,9 +143,15 @@ const WebSocketSdpHandler = {
       ProcessManager.wssh.handleMsg(e);
     });
   },
+  /**
+   * @param {string} stringified WsMsgProtocol message
+   */
   sendMsg(msg_string){
     this.socket.send(msg_string);
   },
+  /**
+   * @param {string} received_raw_msg 
+   */
   handleMsg(received_raw_msg){
     ProcessManager.rmh.handleMsg(received_raw_msg.data);
   },

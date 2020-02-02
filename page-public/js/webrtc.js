@@ -20,6 +20,10 @@ const RTCMsgProtocol = {
 }
 const RTCMsgCreator = {
   protocol:RTCMsgProtocol,
+  /**
+   * @param {string} from 
+   * @param {string} message 
+   */
   createMsg:function(from,message){
     var msg = Object.assign({},this.protocol.message);
     msg.message = message;
@@ -59,6 +63,9 @@ var RTCQueueHandler = function() {
   this.answer_set = false;
   this.queue = [];
 };
+/**
+ * @param {string} user name
+ */
 RTCQueueHandler.prototype.startOfferSdp = function(user_name) {
   var pm = ProcessManager;
   if (!this.hasUserName(user_name)) {
@@ -79,6 +86,10 @@ RTCQueueHandler.prototype.startOfferSdp = function(user_name) {
   //send
   user.makeOfferDescription();
 };
+/**
+ * @param {strinng} name
+ * @param {string} session description
+ */
 RTCQueueHandler.prototype.handleOfferSdp = function(user_name, sdp) {
   var pm = ProcessManager;
   if (!this.hasUserName(user_name)) {

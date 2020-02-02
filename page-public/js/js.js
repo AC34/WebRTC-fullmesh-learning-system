@@ -11,6 +11,9 @@ var User = function(name) {
   this.data_channel = undefined;
   this.id = "";
 };
+/**
+ * @param {string} stringified RTCMsgProtocol message
+ */
 User.prototype.sendDataViaDatachannel = function(msg) {
   this.data_channel.send(msg);
 };
@@ -111,10 +114,6 @@ const UsersManager = {
     }
     return false;
   },
-  /**
-   * @param {string} name
-   * @return {User|undefined} user
-   */
   getUser(name) {
     for (user in ProcessManager.um.Users) {
       if (ProcessManager.um.Users[user].name === name) {
@@ -318,7 +317,7 @@ var ProcessManager = {
   rtcmc: RTCMsgCreator,
   smc: SendMsgCreator,
   uim: UiManager,
-  protocol: HandlingProtocol,
+  protocol: WsMsgProtocol,
   rtcprotocol: RTCMsgProtocol,
   getInstance: function() {
     return Object.create(ProcessManager);

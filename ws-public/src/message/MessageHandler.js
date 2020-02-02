@@ -1,6 +1,6 @@
 
 MessageHandler = function(){
-  this.Protocol = require("./HandlingProtocol");
+  this.Protocol = require("./WsMsgProtocol");
 };
 /**
  * @param {string} msg_string

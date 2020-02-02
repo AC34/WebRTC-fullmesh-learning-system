@@ -141,7 +141,7 @@ ProcessHandler.prototype.util = {
   }
 };
 ProcessHandler.prototype.User = require("./user/User");
-ProcessHandler.prototype.Protocol = require("./message/HandlingProtocol");
+ProcessHandler.prototype.Protocol = require("./message/WsMsgProtocol");
 ProcessHandler.prototype.MessageHandler = require("./message/MessageHandler");
 
 module.exports = ProcessHandler;

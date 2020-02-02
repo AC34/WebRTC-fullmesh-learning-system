@@ -95,6 +95,10 @@ a:after {
   margin-bottom:0.2em;
   font-size:1.3em;
 }
+#wrapper article h3,
+#wrapper article h4{
+  margin-top:0.6em;
+}
 #wrapper article p{
   margin-top:0.6em;
   text-indent: 0.6em;
@@ -111,12 +115,14 @@ a:after {
 #wrapper article#warning p{
   font-family:sans-serif;
 }
-#wrapper article p.code{
+#wrapper article .code{
   margin-top:none;
   padding:1em;
   background-color:rgb(13, 18, 34);
-  color:#dddddd;
+}
+#wrapper article code{
   font-family:monospace;
+  color:#dddddd;
 }
 #wrapper article p.url{
   padding:1em;
@@ -132,21 +138,29 @@ a:after {
   display:block;
   width:100%;
 }
-#wrapper article dl.environment {
-  padding-left:1em;
+#wrapper article .key-combination{
+  padding:1em;
+  font-family:monospace;
+  color:rgb(13, 18, 34);
+  border:1px solid rgb(13, 18, 34);
 }
-
-#wrapper article dl.environment dt,
-#wrapper article dl.environment dd{
+#wrapper article .environment {
+  padding:1em;
+  border:1px solid rgb(13, 18, 34);
+}
+#wrapper article .environment dt,
+#wrapper article .environment dd{
   display: inline-block;
 }
-#wrapper article dl.environment dt p{
+#wrapper article .environment dt p{
+  margin-top:0px;
   display: inline-block;
 }
-#wrapper article dl.environment dt p:after{
+#wrapper article .environment dt p:after{
   content:":";
 }
-#wrapper article dl.environment dd p{
+#wrapper article .environment dd p{
+  margin-top:0px;
   display: inline-block;
 }
 @media screen and (max-width: 750px) {
