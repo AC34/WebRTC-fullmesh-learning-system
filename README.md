@@ -1,3 +1,5 @@
+Sicne this project was a uni seminar assignment, this is no more maintained.
+
 # WebRTC fullmesh learning system
 English | [日本語](./README.jp.md)
 
